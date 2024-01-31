@@ -11,14 +11,37 @@
                 margin: 0;
                 padding: 0;
             }
+
             #header {
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #0c296b; /* Change thiss to your desired shade of blue */
-            padding: 20px 0;
-            transition: background-color 0.3s ease;
-        }
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 100%;
+                background-color: #0c296b;
+                padding: 15px 20px;
+                z-index: 2;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            #header img {
+                position: relative;
+                height: 30px;
+                width: auto;
+                left: 1000px;
+                margin-right: 100px;
+            }
+
+            #header a {
+                text-decoration: none;
+                color: #fff;
+            }
+
+            #header a:hover {
+                color: transparent;
+            }
             .container {
 
                 display: flex;
@@ -38,10 +61,10 @@
                 margin-bottom: 30px;
             }
             form {
-                display: flex;
+                display: fixed;
                 flex-direction: column;
                 align-items: center;
-                width: 100%;
+                width: 40%;
             }
             label {
                 font-size: 1.2rem;
@@ -78,8 +101,10 @@
             }
         </style>
     </head>
-    <header id="header" class="fixed-top header-transparent header-scrolled">
-     <a href="https://garudapratama.com/"><img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="" class="img-fluid"></a>
+    <header id="header">
+            <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
+        </a>
+    </header>
 
     <body>
     <div class="container">
@@ -94,9 +119,6 @@
 
                 <input type="submit" value="Login">
             </form>
-            <div class="footer">
-                Contact IT: +62XXXXXXXXXXX
-            </div>
         </div>
     </body>
     </html>

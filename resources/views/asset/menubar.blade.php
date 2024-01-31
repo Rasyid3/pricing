@@ -66,9 +66,15 @@
             transition: 0.5s;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }}
-            .sidenav a { font-size: 16px; }
+            .sidenav a {
+            font-size: 16px; }
         .font{
             font-family:  monospace;
+        }
+        .sidenav-footer{
+            position:absolute;
+            color:#818181;
+            bottom:0%;
         }
 
     </style>
@@ -86,10 +92,9 @@
             <a href="{{ route('perlengkapan.index') }}">Perlengkapan</a>
             <a href="{{ route('bpjsp.index') }}">BPJS</a>
             <a href="{{ route('benefit.index') }}">Benefit</a>
-            </div>
+</div>
         </div>
     </nav>
-
 
 
     <div id="main">

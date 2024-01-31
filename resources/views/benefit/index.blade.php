@@ -27,7 +27,7 @@ body {
             background-color: #fff;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
-            padding: 10%;
+            padding: 5%;
             z-index: 0;
             overflow-y: scroll;
             scrollbar-width: none;
@@ -80,7 +80,7 @@ body {
     </ul>
 
     <a href="{{ route('benefit.create') }}" class="btn btn-primary">Add</a>
-    <a href="{{ url('/') }}" class="btn btn-primary">Home</a>
+    <a href="{{ url('/dashboard') }}" class="btn btn-primary">Home</a>
     </div>
     </div>
 </body>

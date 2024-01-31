@@ -52,7 +52,7 @@
         }
 
         input[type="submit"] {
-            background-color: #4CAF50;
+            background-color: #4fa3e3;
             color: white;
         }
 
@@ -63,7 +63,7 @@
         }
 
         input[type="submit"]:hover, input[type="button"]:hover {
-            background-color: #45a049;
+            background-color: #4fa3e3;
             transform: scale(1.05);
         }
 
@@ -139,7 +139,7 @@
     <p id="customer"> <span id="customer">0</span></p>
 
     <input type="button" value="Back" onclick="window.location.href='/security-pricing4'">
-    <input type="submit" value="Next Page" onclick="redirectToNextPage()">
+    <input type="submit" value="Take Home Pay" onclick="redirectToNextPage()">
 </form>
 <script>
 

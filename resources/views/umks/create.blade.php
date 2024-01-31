@@ -1,7 +1,4 @@
-<!-- resources/views/umks/create.blade.php -->
-
 @include('layouts.app')
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

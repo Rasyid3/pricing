@@ -15,7 +15,6 @@
             align-items: center;
             height: 100%;
             max-height: 500%;
-
         }
 
         .container {
@@ -31,8 +30,8 @@
             z-index: 0;
             overflow-y: scroll;
             scrollbar-width: none;
-
         }
+
             .container::-webkit-scrollbar {
             display: none;
         }

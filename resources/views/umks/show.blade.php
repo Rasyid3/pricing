@@ -1,7 +1,5 @@
-<!-- resources/views/umks/show.blade.php -->
 
 @include('layouts.app')
-@section('title')
 <!DOCTYPE html>
 <html lang="en">
 <head>

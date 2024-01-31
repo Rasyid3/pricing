@@ -42,7 +42,7 @@
             top:0%;
             left:69%;
             width: 10vw;
-            background-color: #4CAF50;
+            background-color: #4fa3e3;
             color: white;
             padding: 1vw 1vw;
             border: none;
@@ -62,7 +62,7 @@
             bottom: 0;
             right:21%;
             width: 10vw;
-            background-color: #4CAF50;
+            background-color: #4fa3e3;
             color: white;
             padding: 1vw 1vw;
             border: none;
@@ -143,7 +143,7 @@
     <p id="total_gaji"> <span id="total_gaji">0</span></p>
 
     <input type="submit" value="Next Page">
-    <input type="button" onclick="window.location.href='/dashboard'" value="Back">
+    <input type="button" onclick="window.location.href='/dashboard'" value="Back" style="visibility: hidden;">
 
 </form>
 
