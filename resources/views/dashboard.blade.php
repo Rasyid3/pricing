@@ -15,11 +15,23 @@
             z-index: -3;
         }
 
-        .container {
+        .containerPrice {
+            position: relative;
             display: grid;
+            left:10%;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
             padding: 10px;
+        }
+
+        .containerData{
+            position: relative;
+            display: grid;
+            left:10%;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 10px;
+
         }
 
         .card {
@@ -60,7 +72,7 @@
 
 <body>
     @if(auth()->check())
-    <div class="container">
+    <div class="containerPrice">
         <div class="card">
             <div class="img1">
                 <a href="{{ route('security_pricing') }}">
@@ -71,7 +83,8 @@
                 <div class="label">Pricing</div>
             </div>
         </div>
-
+    </div>
+        <div class="containerData">
         <div class="card">
             <div class="img1">
                 <a href="{{ route('umks.index') }}">
@@ -84,6 +97,17 @@
         </div>
 
         <div class="card">
+            <div class="img1">
+                <a href="{{ route('jobs.index') }}">
+                    <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="label">Job</div>
+            </div>
+        </div>
+
+    <div class="card">
             <div class="img1">
                 <a href="{{ route('sub_jobs.index') }}">
                     <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">

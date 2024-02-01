@@ -73,8 +73,13 @@
             color: #333;
         }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.0/html2pdf.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 <body>
 
 <!-- @php
@@ -140,8 +145,17 @@
 
     <input type="button" value="Back" onclick="window.location.href='/security-pricing4'">
     <input type="submit" value="Take Home Pay" onclick="redirectToNextPage()">
+
+    <a href="#" id="downloadButton" onclick="printToPDF()">
+        <i class="fas fa-download"></i>
+    </a>
 </form>
 <script>
+
+function printToPDF() {
+    // Trigger the browser's print dialog
+    window.print();
+}
 
 function formatCurrency(amount) {
     var formattedAmount = parseFloat(amount).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
