@@ -77,32 +77,35 @@
             <div class="img1">
                 <a href="{{ route('security_pricing') }}">
                     <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
-                </a>
+
             </div>
             <div class="card-body">
                 <div class="label">Pricing</div>
             </div>
+            </a>
         </div>
         <div class="card">
             <div class="img1">
                 <a href="{{ route('bpjsp.index') }}">
                     <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
-                </a>
+
             </div>
             <div class="card-body">
                 <div class="label">BPJS</div>
             </div>
+            </a>
         </div>
 
         <div class="card">
             <div class="img1">
                 <a href="{{ route('benefit.index') }}">
                     <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
-                </a>
+
             </div>
             <div class="card-body">
                 <div class="label">Additional Benefit</div>
             </div>
+            </a>
         </div>
 
 
@@ -112,55 +115,56 @@
             <div class="img1">
                 <a href="{{ route('umks.index') }}">
                     <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
-                </a>
+
             </div>
             <div class="card-body">
                 <div class="label">UMK</div>
             </div>
+            </a>
         </div>
 
         <div class="card">
             <div class="img1">
                 <a href="{{ route('jobs.index') }}">
                     <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
-                </a>
             </div>
             <div class="card-body">
                 <div class="label">Job</div>
             </div>
+            </a>
         </div>
 
     <div class="card">
             <div class="img1">
                 <a href="{{ route('sub_jobs.index') }}">
                     <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
-                </a>
             </div>
             <div class="card-body">
                 <div class="label">SubJob</div>
             </div>
+            </a>
         </div>
 
         <div class="card">
             <div class="img1">
                 <a href="{{ route('persons.index') }}">
                     <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
-                </a>
             </div>
             <div class="card-body">
                 <div class="label">Person</div>
             </div>
+            </a>
         </div>
 
     <div class="card">
             <div class="img1">
                 <a href="{{ route('perlengkapan.index') }}">
                     <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
-                </a>
             </div>
             <div class="card-body">
                 <div class="label">Perlengkapan</div>
             </div>
+            </a>
         </div>
 
 
