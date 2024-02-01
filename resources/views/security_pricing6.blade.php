@@ -1,5 +1,4 @@
 <!-- security_pricing6.blade.php -->
-
 @include('layouts.app')
 <!DOCTYPE html>
 <html lang="en">

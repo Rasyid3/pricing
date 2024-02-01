@@ -83,6 +83,29 @@
                 <div class="label">Pricing</div>
             </div>
         </div>
+        <div class="card">
+            <div class="img1">
+                <a href="{{ route('bpjsp.index') }}">
+                    <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="label">BPJS</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="img1">
+                <a href="{{ route('benefit.index') }}">
+                    <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="label">Additional Benefit</div>
+            </div>
+        </div>
+
+
     </div>
         <div class="containerData">
         <div class="card">
@@ -92,7 +115,7 @@
                 </a>
             </div>
             <div class="card-body">
-                <div class="label">UMKS</div>
+                <div class="label">UMK</div>
             </div>
         </div>
 
@@ -117,7 +140,35 @@
                 <div class="label">SubJob</div>
             </div>
         </div>
+
+        <div class="card">
+            <div class="img1">
+                <a href="{{ route('persons.index') }}">
+                    <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="label">Person</div>
+            </div>
+        </div>
+
+    <div class="card">
+            <div class="img1">
+                <a href="{{ route('perlengkapan.index') }}">
+                    <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="label">Perlengkapan</div>
+            </div>
+        </div>
+
+
     </div>
+
+
+
+    @livewire('example')
 
     @else
     <p>Please log in to access the dashboard.</p>

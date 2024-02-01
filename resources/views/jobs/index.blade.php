@@ -94,7 +94,7 @@
 
     <div class="btn-container">
         <a href="{{ route('jobs.create') }}" class="btn btn-primary">Add Job</a>
-        <a href="{{ url('/') }}" class="btn btn-primary">Home</a>
+        <a href="{{ url('/dashboard') }}" class="btn btn-primary">Home</a>
     </div>
     </div>
     </div>

@@ -82,7 +82,7 @@
     </ul>
 
     <a href="{{ route('bpjsp.create') }}" class="btn btn-primary">Add BPJS</a>
-    <a href="{{ url('/') }}" class="btn btn-primary">Home</a>
+    <a href="{{ url('/dashboard') }}" class="btn btn-primary">Home</a>
     </div>
     </div>
 </body>

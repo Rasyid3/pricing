@@ -92,7 +92,7 @@
         </ul>
 
         <a href="{{ route('persons.create') }}" class="btn btn-primary">Add Person</a>
-        <a href="{{ url('/') }}" class="btn btn-primary">Home</a>
+        <a href="{{ url('/dashboard') }}" class="btn btn-primary">Home</a>
     </div>
     </div>
     </div>
