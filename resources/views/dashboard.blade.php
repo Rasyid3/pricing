@@ -76,7 +76,7 @@
         <div class="card">
             <div class="img1">
                 <a href="{{ route('security_pricing') }}">
-                    <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
+                    <img src="{{ asset('images/secure.JPG') }}" alt="Logo" class="img-fluid">
 
             </div>
             <div class="card-body">
