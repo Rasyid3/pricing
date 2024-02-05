@@ -77,13 +77,17 @@
             <div class="img1">
                 <a href="{{ route('security_pricing') }}">
                     <img src="{{ asset('images/secure.JPG') }}" alt="Logo" class="img-fluid">
-
             </div>
             <div class="card-body">
                 <div class="label">Pricing</div>
             </div>
             </a>
         </div>
+
+
+    </div>
+        <div class="containerData">
+
         <div class="card">
             <div class="img1">
                 <a href="{{ route('bpjsp.index') }}">
@@ -107,10 +111,6 @@
             </div>
             </a>
         </div>
-
-
-    </div>
-        <div class="containerData">
         <div class="card">
             <div class="img1">
                 <a href="{{ route('umks.index') }}">

@@ -40,7 +40,7 @@
             top:0%;
             left:69%;
             width: 10vw;
-            background-color: #4fa3e3;
+            background-color: #0A4AAD;
             color: white;
             padding: 1vw 1vw;
             border: none;
@@ -60,7 +60,7 @@
             bottom: 0;
             right:21%;
             width: 10vw;
-            background-color: #4fa3e3;
+            background-color: #0A4AAD;
             color: white;
             padding: 1vw 1vw;
             border: none;

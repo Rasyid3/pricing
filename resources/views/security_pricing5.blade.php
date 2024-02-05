@@ -40,7 +40,7 @@
             box-sizing: border-box;
         }
 
-        input[type="submit"], input[type="button"] {
+        input[type="button"], input[type="submit"] {
             width: 45%;
             margin-top: 15px;
             padding: 10px;
@@ -52,7 +52,7 @@
         }
 
         input[type="submit"] {
-            background-color: #4fa3e3;
+            background-color: #0A4AAD;
             color: white;
         }
 
@@ -63,7 +63,7 @@
         }
 
         input[type="submit"]:hover, input[type="button"]:hover {
-            background-color: #4fa3e3;
+            background-color: #0A4AAD;
             transform: scale(1.05);
         }
 
