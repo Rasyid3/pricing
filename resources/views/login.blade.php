@@ -17,7 +17,7 @@
                 top: 0;
                 right: 0;
                 width: 100%;
-                background-color: #0c296b;
+                background-color: #021C3C;
                 padding: 15px 20px;
                 z-index: 2;
                 display: flex;

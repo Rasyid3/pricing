@@ -18,7 +18,7 @@
             left: 0;
             width: 100%;
             height: 5%;
-            background-color: #0c296b;
+            background-color: #021C3C;
             padding: 20px 0;
             transition: background-color 0.3s ease;
         }
