@@ -13,7 +13,6 @@
         #navbar {
             position: fixed;
             top: "10%";
-            left: "50%";
             width: auto;
             background-color: transparent;
             padding: 15px;
@@ -54,9 +53,11 @@
             position: relative;
             height: 30px;
             width: auto;
-            left: 1000px;
+            left: 10%;
             margin-right: 100px;
         }
+
+
 
         #header a {
             text-decoration: none;
@@ -72,7 +73,6 @@
 @if(isset($user))
                 <p>Welcome, {{ $user->name }}</p>
             @endif
-
     <div id="navbar">
         <button class="NavButtons_menu_3aYXU Button_button3-u4P Button_circle_2Tpx-" type="button" id="openNavButton">
             <svg xmlns="http://www.w3.org/2000/svg"
