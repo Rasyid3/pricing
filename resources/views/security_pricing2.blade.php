@@ -4,26 +4,26 @@
 <head>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f8f8f8;
         }
+
         form {
             padding: 20px;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 20px auto;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            margin-top: 10px;
-            margin-bottom: 20px;
         }
 
         label {
             display: block;
             margin-bottom: 10px;
             font-weight: bold;
+            color: #333;
         }
 
         input[type="text"], select {
@@ -35,46 +35,38 @@
             box-sizing: border-box;
         }
 
-        input[type="submit"] {
-            position: relative;
-
-            top:0%;
-            left:69%;
-            width: 10vw;
-            background-color: #0A4AAD;
-            color: white;
-            padding: 1vw 1vw;
+    input[type="button"], input[type="submit"] {
+            width: 45%;
+            margin-top: 15px;
+            padding: 10px;
             border: none;
-            border-radius: 100vw;
+            border-radius: 4px;
             cursor: pointer;
             font-size: 1rem;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
-        input[type="submit"]:hover {
-            transform: scale(1.05);}
-
-        input[type="button"]:hover {
-            transform: scale(1.05);}
-
-        input[type="button"] {
-            position: relative;
-            bottom: 0;
-            right:21%;
-            width: 10vw;
+    input[type="submit"] {
             background-color: #0A4AAD;
             color: white;
-            padding: 1vw 1vw;
-            border: none;
-            border-radius: 100vw;
-            cursor: pointer;
-            font-size: 1rem;
         }
 
-        #total_gaji {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #333;
+    input[type="button"] {
+            background-color: #333;
+            color: white;
+            margin-left: 5%;
         }
+
+    input[type="submit"]:hover, input[type="button"]:hover {
+        background-color: #0A4AAD;
+        transform: scale(1.05);
+    }
+
+    #total_gaji {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #333;
+    }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -120,8 +112,8 @@
     <h2>Subtotal B.</h2>
     <p id="total_gaji"> <span id="display_gaji_pokok">0</span></p>
 
-    <input type="submit" value="Next Page" onclick="redirectToNextPage()">
     <input type="button" onclick="window.location.href='/security-pricing'" value="Back">
+    <input type="submit" value="Next Page" onclick="redirectToNextPage()">
 </form>
 <script>
 

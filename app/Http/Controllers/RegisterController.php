@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB; // Import DB facade
+use Spatie\Permission\Models\Role; // Import Role model
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+
 
 class RegisterController extends Controller
 {

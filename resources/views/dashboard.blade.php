@@ -5,8 +5,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @include('asset.bs')
     <style>
-        body {
+        .gradient-background {
+    background: linear-gradient(to right, #ff7e5f, #feb47b); /* You can adjust the colors as needed */
+}
+
+        .titel-kanan{
+            left:90%;
+        }
+
+        .label {
+            font-family:'Handel Gothic ITC W05 Bold';
+            font-size: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: Black;
+        }
+
+        /* body {
             height: 100%;
             font-family: Arial, sans-serif;
             background-color: white;
@@ -66,34 +83,44 @@
             text-align: center;
             font-weight: bold;
             color: white;
-        }
+        } */
+
     </style>
 </head>
 
 <body>
     @if(auth()->check())
-    <div class="containerPrice">
-        <div class="card">
-            <div class="img1">
+<div class="container-md justify-content-center gradient-background titel-kanan">
+        <h1> Selamat Datang </h1>
+
+
+
+    </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-4 ">
+        <div class="card  p-4 justify-content-center align-items-center " style="width: 18rem;">
+            <div class="text-center">
                 <a href="{{ route('security_pricing') }}">
                     <img src="{{ asset('images/secure.JPG') }}" alt="Logo" class="img-fluid">
             </div>
-            <div class="card-body">
+            <div class="card-body font-monospace">
                 <div class="label">Pricing</div>
             </div>
             </a>
         </div>
-
-
     </div>
-        <div class="containerData">
+    </div>
+    </div>
 
-        <div class="card">
+        <div class="col">
+        <div class="col-sm">
+        <div class="card sm-1">
             <div class="img1">
                 <a href="{{ route('bpjsp.index') }}">
                     <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" class="img-fluid">
-
             </div>
+    </div>
             <div class="card-body">
                 <div class="label">BPJS</div>
             </div>
@@ -166,8 +193,6 @@
             </div>
             </a>
         </div>
-
-
     </div>
 
 
@@ -178,5 +203,4 @@
     <p>Please log in to access the dashboard.</p>
     @endif
 </body>
-
 </html>

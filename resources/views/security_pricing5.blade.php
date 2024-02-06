@@ -98,7 +98,7 @@
 
 
 
-<form action="" method="post" id="myForm">
+<form action="" method="post" id="myForm" onsubmit="validateInput();">
     <!-- @csrf -->
 
     <h2>Tagihan</h2>
@@ -123,7 +123,7 @@
 
     <h3></h3>
     <label for="jmp">Jumlah Man Power : </label>
-    <input type="number" name="jmp" id="jmp" min="1" value="1" oninput="updateTotal()">
+    <input type="number" name="jmp" id="jmp" min="1" value="1" oninput="updateTotal()" onblur="validateInput()">
 
     <h3></h3>
     <label for="tbamp">Total Biaya All Man Power : </label>
@@ -133,7 +133,7 @@
     <label for="manfee">Management Fee : </label>
     <div>
     <div style="display: flex; align-items: center; margin-bottom: 5px;">
-        <input type="number" name="manfee" id="manfee" min="5" max="100" value="8" step="1" style="width: 60px; padding: 8px; margin-right: 5px;" oninput="calculateManagementFee()">
+        <input type="number" name="manfee" id="manfee" min="5" max="100" value="8" step="1" style="width: 60px; padding: 8px; margin-right: 5px;" oninput="calculateManagementFee()" onblur="validateInput()" >
         <span>%</span>
     </div>
     <label for="manfee_display">Management Fee (Calculated): </label>
@@ -144,7 +144,7 @@
     <p id="customer"> <span id="customer">0</span></p>
 
     <input type="button" value="Back" onclick="window.location.href='/security-pricing4'">
-    <input type="submit" value="Take Home Pay" onclick="redirectToNextPage()">
+    <input type="submit" value="Take Home Pay" onclick="window.location.href='/security-pricing6'">
 
     <a href="#" id="downloadButton" onclick="printToPDF()">
         <i class="fas fa-download"></i>
@@ -228,12 +228,45 @@ function redirectToNextPage() {
     }
 
 $('form').submit(function (e) {
-    e.preventDefault(); // Prevent the default form submission
-    submitFormAndRedirect(); // Submit the form and redirect to the next page
+    e.preventDefault();
+    submitFormAndRedirect();
     });
 
 $('input[type="submit"]').on('click', function() {
     submitFormAndRedirect();
+    });
+
+    function validateInput() {
+        var inputElement = document.getElementById("jmp");
+        var inputElement2 = document.getElementById("manfee");
+        var inputValue = inputElement.value;
+        var inputValue2 = inputElement2.value;
+
+        if (parseInt(inputValue) < 1) {
+            // If the entered value is 0 or less, set the value to 1
+            inputElement.value = 1;
+        }
+
+        if (parseInt(inputValue2) <= 4) {
+            // If the entered value is 0 or less, set the value to 1
+            inputElement2.value = 5;
+        }
+    updateTotal();
+    calculateManagementFee();
+    }
+
+    document.getElementById('manfee').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Prevent form submission on Enter keypress
+            validateInput(); // Call the validation function
+        }
+    });
+
+    document.getElementById('jmp').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Prevent form submission on Enter keypress
+            validateInput(); // Call the validation function
+        }
     });
 
 </script>
