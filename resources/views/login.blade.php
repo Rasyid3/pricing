@@ -30,5 +30,14 @@
     </div>
 </div>
 
+@if(session('error'))
+    <script>
+        // Show popup for invalid credentials
+        alert('{{ session('error') }}');
+    </script>
+@endif
+
+
+
 </body>
 </html>

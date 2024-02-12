@@ -5,85 +5,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @include('asset.bs')
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            display: fixed;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            max-height: 500%;
 
-        }
-
-        .container {
-            position: fixed;
-            display:flex;
-            align-items: center;
-            left:10%;
-            top:0%;
-            height: 100%;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            padding:5%;
-            z-index: 0;
-            overflow-y: scroll;
-            scrollbar-width: none;
-
-        }
-            .container::-webkit-scrollbar {
-            display: none;
-        }
-        .font{
-            font-family: monospace;
-        }
-
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            margin-right: 10px;
-        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="font">
+        <div class="text-center">
         <h1>UMK List</h1>
-        <ul>
-            @foreach ($umks as $umk)
-            <li>
-                <div>
-                <a href="{{ route('umks.show', $umk) }}">{{ $umk->regency }} - Rp. {{ $umk->wage }} </a>
-                </div>
-
-                <div>
-                <span>
-                    <a href="{{ route('umks.edit', $umk) }}" class="btn btn-warning">Edit</a>
-                    <form action="{{ route('umks.destroy', $umk) }}" method="POST" style="display:inline;">
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this UMK?')">Delete</button>
-                    </form>
-                </span>
-                </div>
-            </li>
-            @endforeach
-        </ul>
+        </div>
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th data-field="regency">Regency</th>
+                    <th data-field="wage">Wage</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($umks as $umk)
+                <tr>
+                    <td>{{ $umk->regency }}</td>
+                    <td>Rp.{{ $umk->wage }}</td>
+                    <td>
+                        <a href="{{ route('umks.show', $umk) }}" class="btn btn-info">View</a>
+                        <a href="{{ route('umks.edit', $umk) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('umks.destroy', $umk) }}" method="POST" style="display:inline;">
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this UMK?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
 
         <a href="{{ route('umks.create') }}" class="btn btn-primary">Add UMK</a>
         <a href="{{ url('/dashboard') }}" class="btn btn-primary">Home</a>
-    </div>
     </div>
 </body>
 

@@ -5,97 +5,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @include('asset.bs')
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            display: fixed;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            max-height: 500%;
-
-        }
-
-        .container {
-            position: fixed;
-            align-items: center;
-            left:10%;
-            top:0%;
-            height: 100%;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            padding: 5%;
-            z-index: 0;
-            overflow-y: scroll;
-            scrollbar-width: none;
-
-        }
-            .container::-webkit-scrollbar {
-            display: none;
-        }
-        .font{
-            font-family: monospace;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            margin-right: 10px;
-
-        }
-        .btn-container {
-            display: flex;
-            margin-top: 20px;
-        }
-
-        .btn {
-            margin: 0 10px;
-        }
     </style>
 
 </head>
 
 <body>
     <div class="container">
-        <div class="font">
+        <div class="font-monospace">
         <h1>Persons List</h1>
+                <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th data-field="person">Person</th>
+                            <th> Action </th>
+                        </tr>
+                    </thead>
 
-        <ul>
-            @foreach ($persons as $person)
-                <li>
-                    <div>
-                    <a href="{{ route('persons.show', $person) }}">{{ $person->name }}</a>
-                    </div>
-
-                    <div>
-                    <span>
-                        <a href="{{ route('persons.edit', $person) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('persons.destroy', $person) }}" method="POST" style="display:inline;">
-                            @csrf
+                    <tbody>
+                        @foreach ($persons as $person)
+                        <tr>
+                            <td> {{$person->name}} </td>
+                            <td>
+                            <a href="{{route('persons.show', $person)}}" class="btn btn-info"> View</a>
+                            <a href="{{route('persons.edit', $person)}}" class="btn btn-warning"> Edit</a>
+                            <form action="{{route('persons.destroy', $person)}}" method="POST" style="display:inline;">
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Person?')">Delete</button>
-                        </form>
-                    </span>
-                </div>
-                </li>
-            @endforeach
-        </ul>
-
-        <a href="{{ route('persons.create') }}" class="btn btn-primary">Add Person</a>
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Subjob?')">Delete</button>
+                            </form>
+                        </td>
+                        </tr>
+                        @endforeach
+                            </tbody>
+                            </table>
+        <div class="btn-container">
+        <a href="{{ route('persons.create') }}" class="btn btn-primary">Create SubJob</a>
         <a href="{{ url('/dashboard') }}" class="btn btn-primary">Home</a>
-    </div>
-    </div>
-    </div>
-</body>
+        </div>
 
-</html>
+        </body>
+        </html>
