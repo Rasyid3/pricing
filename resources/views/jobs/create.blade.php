@@ -5,47 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    @include('asset.bs')
 <style>
-    body{
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        display: fixed;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        max-height: 500%;
-    }
-
-    .container{
-        position: fixed;
-        align-items: center;
-        left:10%;
-        top:0%;
-        height: 100%;
-        background-color: #fff;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
-        padding: 5%;
-        z-index: 0;
-    }
-
-    .font{
-        font-family:monospace;
-    }
-
-    .btn {
-        margin-right: 10px;
-        margin: 0 10px;
-    }
-
     </style>
 </head>
 <body>
     <div class="container">
-    <div class="font">
+    <div class="font-monospace">
     <h1>Create Job</h1>
     <form method="POST" action="{{ route('jobs.store') }}">
         @csrf

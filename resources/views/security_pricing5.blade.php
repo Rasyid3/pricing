@@ -1,8 +1,4 @@
-<!-- security_pricing5.blade.php -->
 
-<!-- @php
-    $totalGaji1 = session('total_gaji');
-@endphp -->
 @include('layouts.app')
 <!DOCTYPE html>
 <html lang="en">

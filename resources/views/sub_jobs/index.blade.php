@@ -13,7 +13,7 @@
 
 <body>
     <div class="container">
-        <div class="font">
+        <div class="font-monospace">
         <h1>SubJob List</h1>
                     <div>
                         <table class="table">
@@ -29,10 +29,10 @@
                                 <tr>
                                     <td> {{$subJob->subtitle}} </td>
                                     <td>
-                                    <a href="{{route('sub_jobs.edit', $subJob)}}" class="btn btn-warning">Edit</a>
                                     <a href="{{route('sub_jobs.show', $subJob)}}" class="btn btn-info">View</a>
-                                    <form action="{{route('sub_jobs.destroy', $subJob)}}" method="POST" style="display:inline;">
-                                        @method('DELETE')
+                                    <a href="{{route('sub_jobs.edit', $subJob)}}" class="btn btn-warning">Edit</a><form action="{{route('sub_jobs.destroy', $subJob)}}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Subjob?')">Delete</button>
                                     </form>
                                     </td>

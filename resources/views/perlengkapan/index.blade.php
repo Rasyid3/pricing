@@ -27,10 +27,11 @@
                                 <tr>
                                     <td> {{$item->perlengkapan}} </td>
                                     <td>
-                                    <a href="{{route('perlengkapan.edit', $item)}}" class="btn btn-warning">Edit</a>
                                     <a href="{{route('perlengkapan.show', $item)}}" class="btn btn-info">View</a>
+                                    <a href="{{route('perlengkapan.edit', $item)}}" class="btn btn-warning">Edit</a>
                                     <form action="{{route('perlengkapan.delete', $item)}}" method="POST" style="display:inline;">
-                                        @method('DELETE')
+                                    @csrf
+                                    @method('DELETE')
                                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Item?')">Delete</button>
                                     </form>
                                     </td>

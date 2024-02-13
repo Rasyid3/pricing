@@ -1,5 +1,3 @@
-<!-- resources/views/persons/show.blade.php -->
-
 @include('layouts.app')
 
 @section('title')
@@ -8,12 +6,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @include('asset.bs')
 
 <style>
 
     </style>
 </head>
 <body>
+    <div class="container">
+    <div class="font-monospace">
     <h1>Person Details</h1>
     <p>Name : {{ $person->name }}</p>
     <p>UMK : {{ $person->umk->regency}}</p>
@@ -22,6 +23,7 @@
 
     <!-- Add links or forms for other actions (edit, delete, etc.) -->
     <a href="{{ route('persons.index') }}">Back to Persons List</a>
-
+</div>
+</div>
 </body>
 </html>

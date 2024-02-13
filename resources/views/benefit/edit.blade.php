@@ -4,27 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @include('asset.bs')
     <style>
-        .container {
-            position: fixed;
-            align-items: center;
-            left:10%;
-            top:10%;
-            height: 100vh;
-            background-color: #fff;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-            padding: 50px;
-            z-index: 0;
-        }
-        .font{
-            font-family:  monospace;
-        }
+
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="font">
+    <div class="font-monospace">
     <h1>Edit</h1>
 
     <form method="POST" action="{{ route('benefit.update', $benefitItem) }}">

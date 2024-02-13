@@ -32,6 +32,7 @@
                             <a href="{{route('persons.show', $person)}}" class="btn btn-info"> View</a>
                             <a href="{{route('persons.edit', $person)}}" class="btn btn-warning"> Edit</a>
                             <form action="{{route('persons.destroy', $person)}}" method="POST" style="display:inline;">
+                            @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Subjob?')">Delete</button>
                             </form>
@@ -41,7 +42,7 @@
                             </tbody>
                             </table>
         <div class="btn-container">
-        <a href="{{ route('persons.create') }}" class="btn btn-primary">Create SubJob</a>
+        <a href="{{ route('persons.create') }}" class="btn btn-primary">Create Person</a>
         <a href="{{ url('/dashboard') }}" class="btn btn-primary">Home</a>
         </div>
 

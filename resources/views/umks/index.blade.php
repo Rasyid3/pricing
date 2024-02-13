@@ -13,6 +13,7 @@
 
 <body>
     <div class="container">
+        <div clas="font-monospace">
         <div class="text-center">
         <h1>UMK List</h1>
         </div>
@@ -33,7 +34,8 @@
                         <a href="{{ route('umks.show', $umk) }}" class="btn btn-info">View</a>
                         <a href="{{ route('umks.edit', $umk) }}" class="btn btn-warning">Edit</a>
                         <form action="{{ route('umks.destroy', $umk) }}" method="POST" style="display:inline;">
-                            @method('DELETE')
+                        @csrf
+                        @method('DELETE')
                             <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this UMK?')">Delete</button>
                         </form>
                     </td>
@@ -46,5 +48,6 @@
         <a href="{{ url('/dashboard') }}" class="btn btn-primary">Home</a>
     </div>
 </body>
+
 
 </html>

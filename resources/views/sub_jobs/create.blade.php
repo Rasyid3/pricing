@@ -17,7 +17,8 @@
 
     <form method="POST" action="{{ route('sub_jobs.store') }}">
         @csrf
-
+        <div class="container">
+        <div class="font-monospace">
         <div class="form-group">
             <label for="subtitle">Subtitle:</label>
             <input type="text" name="subtitle" id="subtitle" class="form-control" required>

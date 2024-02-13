@@ -27,10 +27,7 @@ Route::resource('benefit', AdditionalBenefitController::class);
 Route::get('/', function () {
     return view('register');
 });
-Route::get('/perlengkapan/{perlengkapan}', [PerlengkapanKerjaController::class, 'show'])->name('perlengkapan.show');
-Route::get('/perlengkapan/{perlengkapan}/edit', [PerlengkapanKerjaController::class, 'edit'])->name('perlengkapan.edit');
-Route::get('/perlengkapan/create', [PerlengkapanKerjaController::class, 'create'])->name('perlengkapan.create');
-Route::get('/perlengkapan', [PerlengkapanKerjaController::class, 'index'])->name('perlengkapan.index');
+
 Route::get('/umks', [UMKController::class, 'index'])->name('umks.index');
 Route::get('/umks/create', [UMKController::class, 'create'])->name('umks.create');
 Route::post('/umks', [UMKController::class, 'store'])->name('umks.store');
@@ -40,7 +37,7 @@ Route::put('/umks/{umk}', [UMKController::class, 'update'])->name('umks.update')
 Route::delete('/umks/{umk}', [UMKController::class, 'destroy'])->name('umks.destroy');
 Route::get('/login', [CustomAuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [CustomAuthController::class, 'login']);
-Route::post('/perlengkapan/create', [PerlengkapanKerjaController::class, 'store'])->name('perlengkapan.store');
+
 Route::get('/register', [CustomAuthController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [CustomAuthController::class, 'register']);
 Route::post('/logout', [CustomAuthController::class, 'logout'])->name('logout');
@@ -72,8 +69,15 @@ Route::get('/security-pricing4', [SecurityPricingController::class, 'index4'])->
 Route::get('/security/pricing4', 'SecurityPricingController@index');
 Route::post('/security-pricing4', [SecurityPricingController::class, 'processForm3'])->name('processForm3');
 
-Route::delete('/perlengkapan/{perlengkapan}', [PerlengkapanKerjaController::class, 'destroy'])->name('perlengkapan.delete');
-Route::put('/perlengkapan', [PerlengkapanKerjaController::class, 'update'])->name('perlengkapan.update');
+ Route::delete('/perlengkapan/{perlengkapan}', [PerlengkapanKerjaController::class, 'destroy'])->name('perlengkapan.delete');
+ Route::put('/perlengkapan', [PerlengkapanKerjaController::class, 'update'])->name('perlengkapan.update');
+ Route::get('/perlengkapan/create', [PerlengkapanKerjaController::class, 'create'])->name('perlengkapan.create');
+ Route::post('/perlengkapan/create', [PerlengkapanKerjaController::class, 'store'])->name('perlengkapan.store');
+ Route::get('/perlengkapan/{perlengkapan}', [PerlengkapanKerjaController::class, 'show'])->name('perlengkapan.show');
+ Route::get('/perlengkapan/{perlengkapan}/edit', [PerlengkapanKerjaController::class, 'edit'])->name('perlengkapan.edit');
+ Route::get('/perlengkapan', [PerlengkapanKerjaController::class, 'index'])->name('perlengkapan.index');
+Route::patch('/perlengkapan/{perlengkapan}', [PerlengkapanKerjaController::class, 'update'])->name('perlengkapan.update');
+
 Route::delete('/bpjsp/{bpjsp}', [BpjsPerusahaanController::class, 'destroy'])->name('bpjsp.delete');
 Route::put('/bpjsp', [BpjsPerusahaanController::class, 'update'])->name('bpjsp.update');
 Route::post('/bpjsp/create', [BpjsPerusahaanController::class, 'store'])->name('bpjsp.store');
