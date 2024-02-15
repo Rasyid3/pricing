@@ -13,7 +13,7 @@
     <form method="POST" action="{{ route('umks.update', $umk) }}">
         @csrf
         @method('PUT')
-        <div class="container">
+        <div class="container-xl">
         <div class="font-monospace">
         <h1>Edit UMK</h1>
         <div class="form-group">

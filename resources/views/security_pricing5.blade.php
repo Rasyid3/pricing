@@ -1,5 +1,12 @@
+@if(auth()->check())
+    @if(session('role') === 'user')
+    @include('layouts.app1')
+    @endif
+    @if(session('role') === 'admin')
+    @include('layouts.app')
+    @endif
+    @endif
 
-@include('layouts.app')
 <!DOCTYPE html>
 <html lang="en">
 <head>

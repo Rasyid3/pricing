@@ -12,7 +12,10 @@
 
 <div class="container">
     <div class="font-monospace">
+    <div class="text-center">
         <h1>Benefit</h1>
+        </div>
+
         <div>
             <table class="table">
                 <thead>

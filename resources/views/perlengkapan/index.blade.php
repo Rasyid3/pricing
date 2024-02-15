@@ -13,7 +13,10 @@
         <body>
                     <div class="container">
                     <div class="font-monospace">
+                    <div class="text-center">
                     <h1>List Perlengkapan</h1>
+                    </div>
+
                         <table class="table">
                             <thead>
                                 <tr>
@@ -42,6 +45,5 @@
     <div class="btn-container">
     <a href="{{ route('perlengkapan.create') }}" class="btn btn-primary">Add Perlengkapan</a>
     <a href="{{ url('/dashboard') }}" class="btn btn-primary">Home</a>
-
 </body>
 </html>

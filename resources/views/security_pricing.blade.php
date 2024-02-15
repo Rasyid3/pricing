@@ -1,4 +1,11 @@
-@include('layouts.app')
+@if(auth()->check())
+    @if(session('role') === 'user')
+    @include('layouts.app1')
+    @endif
+    @if(session('role') === 'admin')
+    @include('layouts.app')
+    @endif
+@endif
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,7 +84,6 @@ body {
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-
 
 <form action="" method="post">
     @csrf

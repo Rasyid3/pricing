@@ -14,7 +14,10 @@
 <body>
     <div class="container">
         <div class="font-monospace">
+        <div class="text-center">
         <h1>Persons List</h1>
+        </div>
+
                 <div>
                 <table class="table">
                     <thead>

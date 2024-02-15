@@ -1,5 +1,12 @@
-<!-- security_pricing6.blade.php -->
-@include('layouts.app')
+@if(auth()->check())
+    @if(session('role') === 'user')
+    @include('layouts.app1')
+    @endif
+    @if(session('role') === 'admin')
+    @include('layouts.app')
+    @endif
+    @endif
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
