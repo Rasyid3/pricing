@@ -235,15 +235,6 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="card border-0">
-                                        <img class="img-fluid" alt="100%x280" src="{{ asset('images/personimage (3).png') }}">
-                                        <div class="card-body">
-                                            <h4 class="card-title">Special title treatment</h4>
-                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

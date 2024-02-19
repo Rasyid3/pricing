@@ -21,10 +21,6 @@ class SecurityPricingController extends Controller
     public function index2(Request $request)
     {
 
-        if (!$this->validateAccess($request, 'token')) {
-            return redirect()->route('security_pricing')->with('error', 'Access denied');
-        }
-        $token = $this->generateToken($request, 'step2_token');
         $regencies = UMK::distinct('regency')->pluck('regency');
         $sub = SubJob::distinct('subtitle')->pluck('subtitle');
         $addBen = AdditionalBenefit::all();
@@ -33,7 +29,6 @@ class SecurityPricingController extends Controller
             'addBen' => $addBen,
             'regencies' => $regencies,
             'sub' => $sub,
-            'token' => $token,
         ]);
     }
 
@@ -96,13 +91,10 @@ class SecurityPricingController extends Controller
         $subtitle = $request->input('subtitle');
         $regency = $request->input('regency');
         $totalGaji1 = $request->input('total_gaji');
-        $token = $this->generateToken($request, 'token');//belom di p
 
-        // Fetch the relevant data from your database
         $umk = Umk::where('regency', $regency)->first();
         $additionalWage = SubJob::where('subtitle', $subtitle)->value('additional_wage');
 
-        // Calculate the gaji pokok
         $gajiPokok = $umk->wage + $additionalWage;
         $totalGaji1 = 1000;
         $request->session()->put('gaji_pokok', $gajiPokok);
@@ -111,7 +103,6 @@ class SecurityPricingController extends Controller
         Log::info('Gaji Pokok:', ['gaji_pokok' => $gajiPokok]);
         Log::info('Total Gaji:', ['total_gaji' => $totalGaji1]);
 
-        // Redirect to the next page
         return view('security_pricing2', compact('gajiPokok', 'totalGaji1', 'token'));
     }
 
@@ -120,16 +111,13 @@ class SecurityPricingController extends Controller
         $subtitle = $request->input('subtitle');
         $regency = $request->input('regency');
 
-        // Fetch the relevant data from your database
         $umk = Umk::where('regency', $regency)->first();
         $additionalWage = SubJob::where('subtitle', $subtitle)->value('additional_wage');
 
-        // Calculate the gaji pokok
         $gajiPokok = $umk->wage + $additionalWage;
         $request->session()->put('gaji_pokok', $gajiPokok);
         $request->session()->put('display_gaji_pokok', $subtotalB);
 
-        // Redirect to the next page
         return view('security_pricing3', compact('gajiPokok', 'subtotalB'));
     }
 
@@ -138,32 +126,17 @@ class SecurityPricingController extends Controller
         $subtitle = $request->input('subtitle');
         $regency = $request->input('regency');
 
-        // Fetch the relevant data from your database
         $umk = Umk::where('regency', $regency)->first();
         $additionalWage = SubJob::where('subtitle', $subtitle)->value('additional_wage');
 
-        // Calculate the gaji pokok
         $gajiPokok = $umk->wage + $additionalWage;
         $request->session()->put('gaji_pokok', $gajiPokok);
 
-        // Redirect to the next page
         return view('security_pricing4', compact('gajiPokok'));
     }
 
     public function processForm3(Request $request)
     {
-        // $subtitle = $request->input('subtitle');
-        // $regency = $request->input('regency');
-
-        // // Fetch the relevant data from your database
-        // $umk = Umk::where('regency', $regency)->first();
-        // $additionalWage = SubJob::where('subtitle', $subtitle)->value('additional_wage');
-
-        // // Calculate the gaji pokok
-        // $gajiPokok = $umk->wage + $additionalWage;
-        // $request->session()->put('gaji_pokok', $gajiPokok);
-
-        // // Redirect to the next page
         return view('security_pricing5');
     }
 
@@ -171,7 +144,6 @@ class SecurityPricingController extends Controller
     {
     $gajiPokok = $request->input('gajiPokok');
 
-    // Save the gaji pokok in the session
     Session::put('gaji_pokok', $gajiPokok);
 
     return response()->json(['success' => true]);
@@ -182,17 +154,13 @@ class SecurityPricingController extends Controller
         $subtitle = $request->input('subtitle');
         $regency = $request->input('regency');
 
-        // Fetch the relevant data from your database
         $umk = Umk::where('regency', $regency)->first();
         $additionalWage = SubJob::where('subtitle', $subtitle)->value('additional_wage');
 
-        // Calculate the gaji pokok
         $gajiPokok = $umk->wage + $additionalWage;
 
-        // Save the gaji pokok in the session
         $request->session()->put('gaji_pokok', $gajiPokok);
 
-        // Fetch the value for tunjangan jabatan
         $tunjanganJabatan = SubJob::where('subtitle', $subtitle)->value('tunjangan_jabatan');
         $tunjanganKomunikasi = SubJob::where('subtitle', $subtitle)->value('tunjangan_komunikasi');
         $tunjanganTransportasi = SubJob::where('subtitle', $subtitle)->value('tunjangan_transportasi');
@@ -233,7 +201,6 @@ class SecurityPricingController extends Controller
         $request->session()->put('jht_karyawan', $jhtKaryawan);
         $request->session()->put('jp_karyawan', $jpKaryawan);
 
-        // Return the data as JSON
         return response()->json([
             'umk_wage' => $umk->wage,
             'additional_wage' => $additionalWage,
