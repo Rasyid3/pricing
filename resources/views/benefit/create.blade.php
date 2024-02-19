@@ -11,7 +11,7 @@
 
     <form method="POST" action="{{ route('benefit.store') }}">
         @csrf
-        <div class="container">
+        <div class="container mt-4">
         <div class="font-monospace">
         <div class="form-group">
             <label for="nama_benefit">Nama : </label>

@@ -12,7 +12,7 @@
 
     <form method="POST" action="{{ route('umks.store') }}">
         @csrf
-        <div class="container">
+        <div class="container mt-4">
             <div class="font-monospace">
         <h1>Create UMK</h1>
 

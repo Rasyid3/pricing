@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+<div class="container mt-4">
     <div class="font-monospace">
     <h1>Person Details</h1>
     <p>Name : {{ $person->name }}</p>

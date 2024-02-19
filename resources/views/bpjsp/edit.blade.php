@@ -10,7 +10,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+<div class="container mt-4">
         <div class="font-monospace">
     <h1>Edit</h1>
     <form method="POST" action="{{ route('bpjsp.update', $bpjsItem) }}">

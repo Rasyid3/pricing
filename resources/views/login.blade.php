@@ -10,7 +10,7 @@
 
 
 
-<div class="container d-flex justify-content-center align-items-center vh-100">
+<div class="container d-flex justify-content-center align-items-center ">
     <div class="card p-4">
         <h1 class="mb-4">Login</h1>
         <form method="POST" action="{{ route('login.submit') }}" class="row g-3">
@@ -32,7 +32,6 @@
 
 @if(session('error'))
     <script>
-        // Show popup for invalid credentials
         alert('{{ session('error') }}');
     </script>
 @endif

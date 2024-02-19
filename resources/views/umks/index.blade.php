@@ -5,14 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @include('asset.bs')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
 
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container mt-4">
         <div clas="font-monospace">
         <div class="text-center">
         <h1>UMK List</h1>
@@ -48,6 +48,7 @@
         <a href="{{ url('/dashboard') }}" class="btn btn-primary">Home</a>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
 </html>

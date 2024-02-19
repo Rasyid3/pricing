@@ -12,6 +12,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SecurityPricingController;
 use App\Http\Controllers\BpjsPerusahaanController;
 use App\Http\Controllers\AdditionalBenefitController;
+use App\Http\Controllers\UserManagementController;
 
 
 Route::resource('umks', UMKController::class);
@@ -23,6 +24,7 @@ Route::resource('perlengkapan_kerja', PerlengkapanKerjaController::class);
 Route::resource('bpjsp', BpjsPerusahaanController::class);
 Route::resource('login', LoginController::class);
 Route::resource('benefit', AdditionalBenefitController::class);
+Route::resource('userm', UserManagementController::class);
 
 Route::get('/', function () {
     return view('register');
@@ -40,7 +42,7 @@ Route::post('/login', [CustomAuthController::class, 'login']);
 
 Route::get('/register', [CustomAuthController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [CustomAuthController::class, 'register']);
-Route::post('/logout', [CustomAuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/login', function () {
     return view('login');
 })->name('login');
@@ -86,6 +88,15 @@ Route::get('/bpjsp/{bpjsp}/edit', [BpjsPerusahaanController::class, 'edit'])->na
 Route::get('/bpjsp/create', [BpjsPerusahaanController::class, 'create'])->name('bpjsp.create');
 Route::get('/bpjsp', [BpjsPerusahaanController::class, 'index'])->name('bpjsp.index');
 Route::patch('/bpjsp/{bpjsItem}', 'BpjsController@update')->name('bpjsp.update');
+
+Route::delete('/userm/{userm}', [UserManagementController::class, 'destroy'])->name('userm.delete');
+Route::put('/userm', [UserManagementController::class, 'update'])->name('userm.update');
+Route::post('/userm/create', [UserManagementController::class, 'store'])->name('userm.store');
+Route::get('/userm/{userm}', [UserManagementController::class, 'show'])->name('userm.show');
+Route::get('/userm/{userm}/edit', [UserManagementController::class, 'edit'])->name('userm.edit');
+Route::get('/userm/create', [UserManagementController::class, 'create'])->name('userm.create');
+Route::get('/userm', [UserManagementController::class, 'index'])->name('userm.index');
+Route::patch('/userm/{userItem}', 'UserManagementController@update')->name('userm.update');
 
 Route::delete('/benefit/{benefit}', [AdditionalBenefitController::class, 'destroy'])->name('benefit.delete');
 Route::put('/benefit', [AdditionalBenefitController::class, 'update'])->name('benefit.update');

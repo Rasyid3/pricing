@@ -11,22 +11,29 @@ use App\Models\BpjsPerusahaan;
 
 class SecurityPricingController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $regencies = UMK::distinct('regency')->pluck('regency');
         $sub = SubJob::distinct('subtitle')->pluck('subtitle');
-        return view('security_pricing', ['regencies' => $regencies], ['sub' => $sub]);
+        return view('security_pricing', ['regencies' => $regencies, 'sub' => $sub]);
     }
 
-    public function index2()
+    public function index2(Request $request)
     {
+
+        if (!$this->validateAccess($request, 'token')) {
+            return redirect()->route('security_pricing')->with('error', 'Access denied');
+        }
+        $token = $this->generateToken($request, 'step2_token');
         $regencies = UMK::distinct('regency')->pluck('regency');
         $sub = SubJob::distinct('subtitle')->pluck('subtitle');
         $addBen = AdditionalBenefit::all();
+
         return view('security_pricing2', [
             'addBen' => $addBen,
             'regencies' => $regencies,
             'sub' => $sub,
+            'token' => $token,
         ]);
     }
 
@@ -89,6 +96,7 @@ class SecurityPricingController extends Controller
         $subtitle = $request->input('subtitle');
         $regency = $request->input('regency');
         $totalGaji1 = $request->input('total_gaji');
+        $token = $this->generateToken($request, 'token');//belom di p
 
         // Fetch the relevant data from your database
         $umk = Umk::where('regency', $regency)->first();
@@ -104,7 +112,7 @@ class SecurityPricingController extends Controller
         Log::info('Total Gaji:', ['total_gaji' => $totalGaji1]);
 
         // Redirect to the next page
-        return view('security_pricing2', compact('gajiPokok', 'totalGaji1'));
+        return view('security_pricing2', compact('gajiPokok', 'totalGaji1', 'token'));
     }
 
     public function processFormP2(Request $request)
@@ -258,4 +266,20 @@ class SecurityPricingController extends Controller
         return response()->json(['error' => $e->getMessage()], 500);
     }
 }
+private function generateToken($request, $tokenName)
+    {
+        if (!$request->session()->has($tokenName)) {
+            $token = uniqid();
+            $request->session()->put($tokenName, $token);
+        } else {
+            $token = $request->session()->get($tokenName);
+        }
+        return $token;
+    }
+
+    private function validateAccess($request, $requiredToken)
+    {
+        return $request->session()->has($requiredToken);
+    }
+
 }
