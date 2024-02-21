@@ -29,9 +29,20 @@
                 <img src="https://garudapratama.com/assets/images/gdps_white_logo.png" alt="Logo" height="30">
             </a>
         </div>
-    </div>
-    </div>
 
+        <div class="ml-auto">
+        <form action="/logout" method="post">
+                            @csrf
+                            <button type="logout" class="btn btn-outline-light btn-sm ">
+                                <div class="d-flex justify-content-between align-items-center">
+                                        <div class="text-white-75 small">Logout</div>
+                        </div>
+                    </div>
+                </div>
+                            </button>
+                        </form>
+                    </div>
+    </div>
 
 <header>
 </header>

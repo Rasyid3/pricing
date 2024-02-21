@@ -23,15 +23,6 @@
             transition: background-color 0.3s ease;
         }
 
-        #video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: '1000%';
-            height: '100%';
-            z-index: -1;
-        }
-
         #form-container {
             background-color: rgba(255, 255, 255, 0.8);
             display: flex;
@@ -99,49 +90,9 @@
         class="img-fluid"></a>
 <body>
 
-<div id="video-container"></div>
 
 <script>
-    var tag = document.createElement('script');
-    //tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    var player;
-
-    function onYouTubeIframeAPIReady($i=1) {
-
-        player = new YT.Player('video-container', {
-            width: '1380px',
-            height: '768px',
-            videoId: '7WQcofYzHlg',
-            playerVars: {
-
-                'autoplay': 1,
-                'watermark': -1,
-                'controls': 0,
-                'showinfo': -1,
-                'rel': 0,
-                'loop': 1,
-                'mute': 1
-            },
-            events: {
-                'onReady': onPlayerReady,
-                'onStateChange': onPlayerStateChange
-            }
-        });
-    }
-
-    function onPlayerReady(event) {
-        event.target.playVideo();
-    }
-
-    function onPlayerStateChange(event) {
-        if (event.data === YT.PlayerState.ENDED) {
-            player.seekTo(0);
-            player.playVideo();
-        }
-    }
 </script>
 
 <div id="form-container">

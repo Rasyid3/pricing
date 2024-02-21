@@ -24,8 +24,6 @@
       z-index: 1000;
     }
 
-
-
     </style>
 </head>
 
@@ -83,12 +81,6 @@
 
         @if(session('role') === 'admin')
         @include('layouts.app')
-        <div class="alert alert-success" role="alert">
-  Selamat Datang Admin
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-</div>
 <div class="container mt-4">
         <div class="row justify-content-center mb-3">
             <div class="col-6 col-sm-8 col-md-10 col-lg-12">

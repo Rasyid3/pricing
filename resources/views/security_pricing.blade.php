@@ -9,23 +9,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @include('asset.bs')
     <style>
-
-body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-        }
-
-        form {
-            padding: 20px;
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
 
         label {
             display: block;
@@ -84,7 +69,9 @@ body {
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
 <form action="" method="post">
     @csrf
 
@@ -143,9 +130,10 @@ body {
     <input type="button" onclick="window.location.href='/dashboard'" value="Back" style="visibility: hidden;">
     <input type="submit" value="Next Page">
 
-
-
 </form>
+</div>
+</div>
+</div>
 
     <script>
 
@@ -154,31 +142,22 @@ body {
             return 'Rp. ' + formattedAmount;
         }
 
-
-
-    // JavaScript code to calculate the total
-    // gaji based on the input values
-
-    function formatCurrency(amount) {
-    // Format the number with commas and round to 0 decimal places
-    var formattedAmount = parseFloat(amount).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-    // Add "Rp." in front of the formatted amount
-    return 'Rp. ' + formattedAmount;
-    }
-
     function redirectToNextPage() {
 
         $('form').submit();
     }
 
+    function logout() {
+    window.location.href = '/security-pricing3';
+}
+
     function updateGajiPokok() {
         var selectedSubtitle = $('#subtitle').val();
         var selectedRegency = $('#regency').val();
 
-        // Make an Ajax request to fetch the relevant data
+
         $.ajax({
-            url: '/get-wages', // Replace with the actual URL to fetch wages
+            url: '/get-wages',
             method: 'POST',
             data: {
                 subtitle: selectedSubtitle,
@@ -186,7 +165,7 @@ body {
                 _token: $('input[name="_token"]').val()
             },
             success: function(response) {
-                // Update the "Gaji Pokok" field with the calculated value
+
                 var gajiPokok = formatCurrency(parseFloat(response.umk_wage) +
                 parseFloat(response.additional_wage));
 
@@ -198,7 +177,6 @@ body {
 
                 $('#gaji_pokok').val(gajiPokok);
 
-                 // Update the "Tunjangan Jabatan" field with the fetched value
                 $('#tunjangan_jabatan').val(formatCurrency(response.tunjangan_jabatan));
                 $('#tunjangan_komunikasi').val(formatCurrency(response.tunjangan_komunikasi));
                 $('#tunjangan_transportasi').val(formatCurrency(response.tunjangan_transportasi));
@@ -206,26 +184,8 @@ body {
                 $('#tunjangan_lembur').val(formatCurrency(response.tunjangan_lembur));
                 $('#tunjangan_shift').val(formatCurrency(response.tunjangan_shift));
 
-                // Update the total gaji paragraph
                 $('#total_gaji').text(gajiTotal);
-            // Store the subtotal data in the session
-            $.ajax({
-                url: '/store-total-gaji',
-                method: 'POST',
-                data: {
-                    subtitle: selectedSubtitle,
-                    regency: selectedRegency,
-                    total_gaji: gajiTotal,
-                    _token: $('input[name="_token"]').val()
-                },
-                success: function(response) {
-                    console.log('Total Gaji stored in session:', response);
-                    //redirectToNextPage();
-                },
-                error: function(error) {
-                    console.error('Error storing total gaji in session:', error);
-                }
-            });
+
         },
             error: function(error) {
                 console.error('Error fetching data:', error);
@@ -233,38 +193,19 @@ body {
         });
     }
 
-    // Attach the updateGajiPokok function to the change event of subtitle and regency fields
     $('#subtitle, #regency').on('change', function() {
         updateGajiPokok();
     });
 
-    // Add this function to handle form submission and redirection
-
     $('form').submit(function (e) {
-    e.preventDefault(); // Prevent the default form submission
-    submitFormAndRedirect(); // Submit the form and redirect to the next page
+    e.preventDefault();
+    submitFormAndRedirect();
     });
 
     function submitFormAndRedirect() {
     var selectedSubtitle = $('#subtitle').val();
     var selectedRegency = $('#regency').val();
-
-    // Make an Ajax request to fetch the relevant data
-    $.ajax({
-        url: '/get-wages',
-        method: 'POST',
-        data: {
-            subtitle: selectedSubtitle,
-            regency: selectedRegency,
-            _token: $('input[name="_token"]').val()
-        },
-        success: function(response) {
-            window.location.href = '/security-pricing2';
-        },
-        error: function(error) {
-            console.error('Error fetching data:', error);
-        }
-    });
+    window.location.href = '/security-pricing2';
 }
     updateGajiPokok();
 

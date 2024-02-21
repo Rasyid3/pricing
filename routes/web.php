@@ -27,7 +27,7 @@ Route::resource('benefit', AdditionalBenefitController::class);
 Route::resource('userm', UserManagementController::class);
 
 Route::get('/', function () {
-    return view('register');
+    return view('login');
 });
 
 Route::get('/umks', [UMKController::class, 'index'])->name('umks.index');
@@ -100,12 +100,21 @@ Route::patch('/userm/{userItem}', 'UserManagementController@update')->name('user
 
 Route::delete('/benefit/{benefit}', [AdditionalBenefitController::class, 'destroy'])->name('benefit.delete');
 Route::put('/benefit', [AdditionalBenefitController::class, 'update'])->name('benefit.update');
+Route::get('/benefit/create', [AdditionalBenefitController::class, 'create'])->name('benefit.create');
 Route::post('/benefit/create', [AdditionalBenefitController::class, 'store'])->name('benefit.store');
 Route::get('/benefit/{benefit}', [AdditionalBenefitController::class, 'show'])->name('benefit.show');
 Route::get('/benefit/{benefit}/edit', [AdditionalBenefitController::class, 'edit'])->name('benefit.edit');
-Route::get('/benefit/create', [AdditionalBenefitController::class, 'create'])->name('benefit.create');
 Route::get('/benefit', [AdditionalBenefitController::class, 'index'])->name('benefit.index');
 Route::patch('/benefit/{benefitItem}', 'AdditionalBenefitController@update')->name('benefit.update');
+
+Route::delete('/jobs/{jobs}', [JobController::class, 'destroy'])->name('jobs.delete');
+ Route::put('/jobs', [JobController::class, 'update'])->name('jobs.update');
+ Route::get('/jobs/create', [JobController::class, 'create'])->name('jobs.create');
+ Route::post('/jobs/create', [JobController::class, 'store'])->name('jobs.store');
+ Route::get('/jobs/{jobs}', [JobController::class, 'show'])->name('jobs.show');
+ Route::get('/jobs/{jobs}/edit', [JobController::class, 'edit'])->name('jobs.edit');
+ Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
+Route::patch('/jobs/{jobs}', [JobController::class, 'update'])->name('jobs.update');
 
 Route::post('/store-total-gaji', [SecurityPricingController::class, 'storeTotalGaji'])->name('store.total.gaji');
 Route::post('/store-total-gaji', 'SecurityPricingController@storeTotalGaji');

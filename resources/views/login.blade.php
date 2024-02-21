@@ -25,6 +25,8 @@
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Login</button>
+                <a href="/register"><button type="button">Register</button></a>
+
             </div>
         </form>
     </div>

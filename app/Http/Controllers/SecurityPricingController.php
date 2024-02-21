@@ -21,6 +21,7 @@ class SecurityPricingController extends Controller
     public function index2(Request $request)
     {
 
+
         $regencies = UMK::distinct('regency')->pluck('regency');
         $sub = SubJob::distinct('subtitle')->pluck('subtitle');
         $addBen = AdditionalBenefit::all();
@@ -29,6 +30,7 @@ class SecurityPricingController extends Controller
             'addBen' => $addBen,
             'regencies' => $regencies,
             'sub' => $sub,
+
         ]);
     }
 
@@ -84,60 +86,6 @@ class SecurityPricingController extends Controller
             'regencies' => $regencies,
             'sub' => $sub,
         ]);
-    }
-
-    public function processForm(Request $request)
-    {
-        $subtitle = $request->input('subtitle');
-        $regency = $request->input('regency');
-        $totalGaji1 = $request->input('total_gaji');
-
-        $umk = Umk::where('regency', $regency)->first();
-        $additionalWage = SubJob::where('subtitle', $subtitle)->value('additional_wage');
-
-        $gajiPokok = $umk->wage + $additionalWage;
-        $totalGaji1 = 1000;
-        $request->session()->put('gaji_pokok', $gajiPokok);
-        $request->session()->put('total_gaji', $totalGaji1);
-
-        Log::info('Gaji Pokok:', ['gaji_pokok' => $gajiPokok]);
-        Log::info('Total Gaji:', ['total_gaji' => $totalGaji1]);
-
-        return view('security_pricing2', compact('gajiPokok', 'totalGaji1', 'token'));
-    }
-
-    public function processFormP2(Request $request)
-    {
-        $subtitle = $request->input('subtitle');
-        $regency = $request->input('regency');
-
-        $umk = Umk::where('regency', $regency)->first();
-        $additionalWage = SubJob::where('subtitle', $subtitle)->value('additional_wage');
-
-        $gajiPokok = $umk->wage + $additionalWage;
-        $request->session()->put('gaji_pokok', $gajiPokok);
-        $request->session()->put('display_gaji_pokok', $subtotalB);
-
-        return view('security_pricing3', compact('gajiPokok', 'subtotalB'));
-    }
-
-    public function processForm2(Request $request)
-    {
-        $subtitle = $request->input('subtitle');
-        $regency = $request->input('regency');
-
-        $umk = Umk::where('regency', $regency)->first();
-        $additionalWage = SubJob::where('subtitle', $subtitle)->value('additional_wage');
-
-        $gajiPokok = $umk->wage + $additionalWage;
-        $request->session()->put('gaji_pokok', $gajiPokok);
-
-        return view('security_pricing4', compact('gajiPokok'));
-    }
-
-    public function processForm3(Request $request)
-    {
-        return view('security_pricing5');
     }
 
     public function saveGajiPokok(Request $request)
@@ -224,29 +172,6 @@ class SecurityPricingController extends Controller
             'kes_karyawan' => $jpKaryawan,
         ]);
     }
-    public function storeTotalGaji(Request $request)
-{
-    try {
-        $request->session()->put('total_gaji', $request->total_gaji);
-        return response()->json(['message' => 'Total Gaji stored in session']);
-    } catch (\Exception $e) {
-        return response()->json(['error' => $e->getMessage()], 500);
-    }
-}
-private function generateToken($request, $tokenName)
-    {
-        if (!$request->session()->has($tokenName)) {
-            $token = uniqid();
-            $request->session()->put($tokenName, $token);
-        } else {
-            $token = $request->session()->get($tokenName);
-        }
-        return $token;
-    }
 
-    private function validateAccess($request, $requiredToken)
-    {
-        return $request->session()->has($requiredToken);
-    }
 
 }

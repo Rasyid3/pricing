@@ -36,7 +36,7 @@
                             <form action="{{route('benefit.delete', $item)}}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Subjob?')">Delete</button>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-item-id="{{ $item->id }}">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -50,6 +50,38 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Confirm Delete</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this item?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <form id="deleteForm" action="#" method="POST" style="display: inline;">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var deleteModal = document.getElementById('deleteModal');
+  deleteModal.addEventListener('show.bs.modal', function (event) {
+    var button = event.relatedTarget;
+    var itemId = button.getAttribute('data-item-id');
+    var form = document.getElementById('deleteForm');
+    form.action = "{{ route('perlengkapan.delete', '') }}" + "/" + itemId;
+  });
+</script>
 
 </body>
 </html>

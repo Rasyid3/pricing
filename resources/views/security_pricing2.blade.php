@@ -10,23 +10,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @include('asset.bs')
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-        }
-
-        form {
-            padding: 20px;
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
         label {
             display: block;
             margin-bottom: 10px;
@@ -82,6 +67,9 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
 
 <!-- @php
     // Retrieve gaji pokok from the session
@@ -123,6 +111,9 @@
     <input type="button" onclick="window.location.href='/security-pricing'" value="Back">
     <input type="submit" value="Next Page" onclick="redirectToNextPage()">
 </form>
+</div>
+</div>
+</div>
 <script>
 
 function formatCurrency(amount) {

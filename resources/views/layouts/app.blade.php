@@ -22,7 +22,7 @@
     <script>
         document.getElementById('openNavButton').addEventListener('click', openNav);
         function openNav() {
-            document.getElementById("mySidenav").style.width = "135px";
+            document.getElementById("mySidenav").style.width = "143px";
             document.getElementById("mySidenav").style.height = "100%";
             document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
         }

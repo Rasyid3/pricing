@@ -10,27 +10,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @include('asset.bs')
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-        }
 
-        form {
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            padding: 20px;
-        }
-
-        h2, h3 {
-            color: #333;
-            margin-top: 15px;
-        }
 
         label {
             display: block;
@@ -80,12 +62,16 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
 
 @php
     $gajiPokok = session('gaji_pokok');
     $kes = session('kes_karyawan');
     $jht = session('jht_karyawan');
     $jp = session('jp_karyawan');
+    $total = session('total_gaji');
 @endphp
 
 <form action="" method="post" id="myForm">
@@ -113,7 +99,9 @@
     <input type="submit" value="Next Page" onclick="redirectToNextPage()" style="visibility: hidden;">
     <input type="button" value="Back" onclick="window.location.href='/security-pricing5'">
 </form>
-
+    </div>
+    </div>
+    </div>
 <script>
 
 function formatCurrency(amount) {
@@ -125,11 +113,12 @@ var rawGajiPokok = {{ $gajiPokok }};
 var rawKes = {{ $kes }};
 var rawJht = {{ $jht }};
 var rawJp = {{ $jp }};
+var rawTotal = {{ $total }};
 var kesValue = rawGajiPokok * rawKes;
 var jhtValue = rawGajiPokok * rawJht;
 var jpValue = rawGajiPokok * rawJp;
 var tbdkValue = kesValue + jhtValue + jpValue;
-var thpValue = rawGajiPokok - tbdkValue;
+var thpValue = rawTotal - tbdkValue;
 
 document.getElementById('kes').value = formatCurrency(kesValue);
 document.getElementById('jht').value = formatCurrency(jhtValue);

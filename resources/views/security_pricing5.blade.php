@@ -10,22 +10,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-        }
+@include('asset.bs')
 
-        form {
-            padding: 20px;
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
+    <style>
 
         label {
             display: block;
@@ -100,6 +87,9 @@
 @endphp -->
 
 
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
 
 <form action="" method="post" id="myForm" onsubmit="validateInput();">
     <!-- @csrf -->
@@ -153,6 +143,9 @@
         <i class="fas fa-download"></i>
     </a>
 </form>
+    </div>
+    </div>
+    </div>
 <script>
 
 function printToPDF() {
