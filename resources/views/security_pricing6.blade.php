@@ -5,7 +5,8 @@
     @if(session('role') === 'admin')
     @include('layouts.app')
     @endif
-    @endif
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -77,16 +78,16 @@
 <form action="" method="post" id="myForm">
     <!-- @csrf -->
 
-    <h2>BPJS Ditanggung Karyawan</h2>
-    <label for="kes">BPJS KES : </label>
+    <h4>BPJS Ditanggung Karyawan</h4>
+    <label for="kes">BPJS KES (1 % Gaji Pokok) : </label>
     <input type="text" name="kes" id="kes" readonly>
 
     <h3></h3>
-    <label for="jht">BPJSTK JHT : </label>
+    <label for="jht">BPJSTK JHT (2 % Gaji Pokok) : </label>
     <input type="text" name="jht" id="jht" readonly>
 
     <h3></h3>
-    <label for="jp">BPJSTK JP: </label>
+    <label for="jp">BPJSTK JP (1 % Gaji Pokok) : </label>
     <input type="text" name="jp" id="jp" readonly>
 
     <h3></h3>
@@ -97,7 +98,7 @@
     <input type="text" name="thp" id="thp" readonly>
 
     <input type="submit" value="Next Page" onclick="redirectToNextPage()" style="visibility: hidden;">
-    <input type="button" value="Back" onclick="window.location.href='/security-pricing5'">
+    <input type="button" value="Back" onclick="window.location.href='/security-pricing'">
 </form>
     </div>
     </div>
@@ -127,3 +128,9 @@ document.getElementById('tbdk').value = formatCurrency(tbdkValue);
 document.getElementById('thp').value = formatCurrency(thpValue);
 
 </script>
+@else
+    <p>Please log in to access </p>
+    @endif
+</body>
+</html>
+

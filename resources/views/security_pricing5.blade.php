@@ -1,11 +1,11 @@
-@if(auth()->check())
+    @if(auth()->check())
     @if(session('role') === 'user')
     @include('layouts.app1')
     @endif
     @if(session('role') === 'admin')
     @include('layouts.app')
     @endif
-    @endif
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,6 +44,7 @@
         input[type="submit"] {
             background-color: #0A4AAD;
             color: white;
+
         }
 
         input[type="button"] {
@@ -72,6 +73,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 <body>
 
+
+
+
 <!-- @php
     // Retrieve gaji pokok from the session
     $gajiPokok = session('gaji_pokok');
@@ -84,6 +88,7 @@
     $bpjsJkm = session('bpjstk_jkm');
     $bpjsJht = session('bpjstk_jht');
     $bpjsJp = session('bpjstk_jp');
+
 @endphp -->
 
 
@@ -137,7 +142,7 @@
     <p id="customer"> <span id="customer">0</span></p>
 
     <input type="button" value="Back" onclick="window.location.href='/security-pricing4'">
-    <input type="submit" value="Take Home Pay" onclick="window.location.href='/security-pricing6'">
+    <input type="submit" value="Profitability Analysis" onclick="window.location.href='/profitability-analysis'">
 
     <a href="#" id="downloadButton" onclick="printToPDF()">
         <i class="fas fa-download"></i>
@@ -147,6 +152,10 @@
     </div>
     </div>
 <script>
+
+
+var subtotale = Math.round(parseFloat(sessionStorage.getItem('subtotale')));
+var subtotalbSession = parseFloat(sessionStorage.getItem('subtotalbSession'));
 
 function printToPDF() {
     // Trigger the browser's print dialog
@@ -160,15 +169,7 @@ function formatCurrency(amount) {
 
 var rawGajiPokok = {{ $gajiPokok }};
 var rawGajiTotal = {{ $totalGaji }};
-var subaValue = rawGajiTotal;
-
-var rawTHR = {{ $thR }};
-var rawInsentif = {{ $kerjaInsentif }};
-var rawImbalan = {{ $imbalanP }};
-var thrValue = rawGajiPokok / rawTHR;
-var imbalanValue = rawGajiPokok / rawImbalan;
-var insentifValue = rawInsentif * 5 / 12;
-var subbValue = thrValue + imbalanValue + insentifValue;
+var subaValue = Math.round(rawGajiTotal);
 
 var rawKes = {{ $bpjsKes }};
 var rawJkk = {{ $bpjsJkk }};
@@ -180,25 +181,31 @@ var jkkValue = rawGajiPokok * rawJkk;
 var jkmValue = rawGajiPokok * rawJkm;
 var jhtValue = rawGajiPokok * rawJht;
 var jpValue = rawGajiPokok * rawJp;
-var subcValue = kesValue + jkkValue + jkmValue + jhtValue + jpValue;
+var subcValue = Math.round(kesValue + jkkValue + jkmValue + jhtValue + jpValue);
 
 var perlengkapanData = {!! $perlengkapanKerja->toJson() !!};
 var idValue = parseFloat((perlengkapanData.find(item => item.perlengkapan === 'ID Card').nominal_persentase) / 12);
 var seragamValue = parseFloat((perlengkapanData.find(item => item.perlengkapan === 'Seragam').nominal_persentase) * 2 / 12);
 var sepatuValue = parseFloat((perlengkapanData.find(item => item.perlengkapan === 'Sepatu').nominal_persentase) / 12);
-var subeValue = idValue + seragamValue + sepatuValue;
-var sbmpValue = subaValue + subbValue + subcValue + subeValue;
+var subeValue = Math.round(idValue + seragamValue + sepatuValue);
+var sbmpValue = Math.round(subaValue + subtotalbSession +subcValue + subtotale);
 var jumlahManPower = 1;
 var totalBiayaAllManPower = sbmpValue * jumlahManPower;
 var managementFee = 0;
 
 document.getElementById('suba').value = formatCurrency(subaValue);
-document.getElementById('subb').value = formatCurrency(subbValue);
+document.getElementById('subb').value = formatCurrency(subtotalbSession);
 document.getElementById('subc').value = formatCurrency(subcValue);
 document.getElementById('sube').value = formatCurrency(subeValue);
 document.getElementById('sbmp').value = formatCurrency(sbmpValue);
-document.getElementById('sube').value = formatCurrency(subeValue);
-document.getElementById('sube').value = formatCurrency(subeValue);
+document.getElementById('sube').value = formatCurrency(subtotale);
+
+    console.log('suba : ', subaValue);
+    console.log('subb : ', subtotalbSession);
+    console.log('subc : ', subcValue);
+    console.log('sube : ', subeValue);
+    console.log('sbmp : ', sbmpValue);
+    console.log('sube : ', subtotale);
 
 function calculateManagementFee() {
         var percentageInput = parseFloat(document.getElementById('manfee').value) || 0;
@@ -265,7 +272,12 @@ $('input[type="submit"]').on('click', function() {
         }
     });
 
+
 </script>
+
+@else
+    <p>Please log in to access </p>
+    @endif
 
 </body>
 </html>

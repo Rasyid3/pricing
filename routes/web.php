@@ -10,9 +10,11 @@ use App\Http\Controllers\PerlengkapanKerjaController;
 use App\Http\Controllers\Auth\CustomAuthController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SecurityPricingController;
+use App\Http\Controllers\SecurityPricingController2;
 use App\Http\Controllers\BpjsPerusahaanController;
 use App\Http\Controllers\AdditionalBenefitController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\ProfitabilityAnalysisController;
 
 
 Route::resource('umks', UMKController::class);
@@ -26,6 +28,7 @@ Route::resource('login', LoginController::class);
 Route::resource('benefit', AdditionalBenefitController::class);
 Route::resource('userm', UserManagementController::class);
 
+
 Route::get('/', function () {
     return view('login');
 });
@@ -37,19 +40,23 @@ Route::get('/umks/{umk}', [UMKController::class, 'show'])->name('umks.show');
 Route::get('/umks/{umk}/edit', [UMKController::class, 'edit'])->name('umks.edit');
 Route::put('/umks/{umk}', [UMKController::class, 'update'])->name('umks.update');
 Route::delete('/umks/{umk}', [UMKController::class, 'destroy'])->name('umks.destroy');
+
 Route::get('/login', [CustomAuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [CustomAuthController::class, 'login']);
-
-Route::get('/register', [CustomAuthController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [CustomAuthController::class, 'register']);
-Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/login', function () {
     return view('login');
 })->name('login');
+Route::post('/login', [LoginController::class, 'submit'])->name('login.submit');
+
+Route::post('/logout', [LoginController::class, 'logout']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-Route::post('/login', [LoginController::class, 'submit'])->name('login.submit');
+
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
 Route::post('register', [RegisterController::class, 'register'])->name('register');
 
 Route::get('/security/pricing', 'SecurityPricingController@index');
@@ -58,8 +65,8 @@ Route::post('/security-pricing', [SecurityPricingController::class, 'processForm
 
 Route::post('/get-wages', [SecurityPricingController::class, 'getWages']);
 
-Route::get('/security-pricing2', [SecurityPricingController::class, 'index2'])->name('security_pricing2');
-Route::post('/security-pricing2', 'SecurityPricingController@index')->name('security_pricing2');
+Route::get('/security-pricing2', [SecurityPricingController2::class, 'index'])->name('security_pricing2');
+// Route::post('/security-pricing2', 'SecurityPricingController2@index')->name('security_pricing2');
 
 Route::post('/save-gaji-pokok', 'SecurityPricingController@saveGajiPokok');
 
@@ -116,10 +123,13 @@ Route::delete('/jobs/{jobs}', [JobController::class, 'destroy'])->name('jobs.del
  Route::get('/jobs', [JobController::class, 'index'])->name('jobs.index');
 Route::patch('/jobs/{jobs}', [JobController::class, 'update'])->name('jobs.update');
 
-Route::post('/store-total-gaji', [SecurityPricingController::class, 'storeTotalGaji'])->name('store.total.gaji');
-Route::post('/store-total-gaji', 'SecurityPricingController@storeTotalGaji');
-Route::get('/store-total-gaji', 'SecurityPricingController@storeTotalGaji');
-
 Route::get('/security-pricing5', [SecurityPricingController::class, 'index5'])->name('security_pricing5');
 
 Route::get('/security-pricing6', [SecurityPricingController::class, 'index6'])->name('security_pricing5');
+
+Route::post('/store-subtotale', 'SecurityPricingController@storeSubtotale')->name('store.subtotale');;
+
+Route::get('/profitability-analysis', [ProfitabilityAnalysisController::class, 'index'])->name('profitability_analysis');
+Route::post('/submit-profitability', [ProfitabilityAnalysisController::class, 'submit'])->name('submit-profitability');
+Route::post('/save-profitability', 'ProfitabilityAnalysisController@save')->name('save-profitability');
+Route::get('/download-pdf', 'ProfitabilityAnalysisController@downloadPDF')->name('download-pdf');

@@ -15,13 +15,13 @@
     <div class="container mt-4">
         <div clas="font-monospace">
         <div class="text-center">
-        <h1>UMK List</h1>
+        <h1>List UMK</h1>
         </div>
         <table class="table ">
             <thead>
                 <tr>
-                    <th data-field="regency">Regency</th>
-                    <th data-field="wage">Wage</th>
+                    <th data-field="regency">Kota</th>
+                    <th data-field="wage">Upah Minimum</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -29,7 +29,7 @@
                 @foreach ($umks as $umk)
                 <tr>
                     <td>{{ $umk->regency }}</td>
-                    <td>Rp.{{ $umk->wage }}</td>
+                    <td>Rp. {{ number_format($umk->wage, 2, ',', '.') }}</td>
                     <td>
                         <a href="{{ route('umks.show', $umk) }}" class="btn btn-info">View</a>
                         <a href="{{ route('umks.edit', $umk) }}" class="btn btn-warning">Edit</a>

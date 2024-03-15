@@ -69,9 +69,16 @@
 </head>
 <body>
 
+@if(auth()->check())
+
 <!-- @php
     // Retrieve gaji pokok from the session
     $gajiPokok = session('gaji_pokok');
+    $bpjsKES = session('bpjs_kes');
+    $bpjstkJKK = session('bpjstk_jkk');
+    $bpjstkJKM = session('bpjstk_jkm');
+    $bpjstkJHT = session('bpjstk_jht');
+    $bpjstkJP = session('bpjstk_jp');
 @endphp -->
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -83,23 +90,23 @@
     @csrf
 
     <h2>C. BPJS Ditanggung Perusahaan</h2>
-    <label for="bpjskes">BPJS KES : </label>
+    <label for="bpjskes">BPJS KES ({{ $bpjsKES * 100 }}% Gaji Pokok) : </label>
     <input type="text" name="bpjskes" id="bpjskes" readonly>
 
     <h3></h3>
-    <label for="bpjstkjkk">BPJSTK JKK : </label>
+    <label for="bpjstkjkk">BPJSTK JKK ({{ $bpjstkJKK * 100 }}% Gaji Pokok) : </label>
     <input type="text" name="bpjstkjkk" id="bpjstkjkk" readonly>
 
     <h3></h3>
-    <label for="bpjstkjkm">BPJSTK JKM : </label>
+    <label for="bpjstkjkm">BPJSTK JKM ({{ $bpjstkJKM * 100 }}% Gaji Pokok) : </label>
     <input type="text" name="bpjstkjkm" id="bpjstkjkm" readonly>
 
     <h3></h3>
-    <label for="bpjstkjht">BPJSTK JHT : </label>
+    <label for="bpjstkjht">BPJSTK JHT ({{ $bpjstkJHT * 100 }}% Gaji Pokok) : </label>
     <input type="text" name="bpjstkjht" id="bpjstkjht" readonly>
 
     <h3></h3>
-    <label for="bpjstkjp">BPJSTK JP : </label>
+    <label for="bpjstkjp">BPJSTK JP ({{ $bpjstkJP * 100 }}% Gaji Pokok) : </label>
     <input type="text" name="bpjstkjp" id="bpjstkjp" readonly>
 
     <h2>Subtotal C.</h2>
@@ -159,7 +166,9 @@ $('input[type="submit"]').on('click', function() {
 
 </script>
 
-
+@else
+    <p>Please log in to access </p>
+    @endif
 
 </body>
 </html>

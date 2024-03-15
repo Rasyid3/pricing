@@ -48,7 +48,6 @@
                             </div>
                             <div class="card-footer d-flex align-items-center justify-content-between small">
                                 <a class="text-white stretched-link" href="{{ route('security_pricing') }}">Go</a>
-                                <div class="text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
                     </div>
@@ -62,7 +61,6 @@
                                         <div class="text-white-75 small">Logout</div>
                                 </div>
                                 <div class="card-footer d-flex align-items-center justify-content-between small">
-                                <div class="text-white"><i class="fas fa-angle-right"></i></div>
                             </div>
                         </div>
                     </div>

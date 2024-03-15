@@ -31,7 +31,7 @@
                             @foreach ($bpjsItems as $item)
                                 <tr>
                                     <td> {{$item->nama_bpjs}} </td>
-                                    <td> {{$item->nominal_persentase}} </td>
+                                    <td>{{ number_format($item->nominal_persentase * 100, 2) }} %</td>
                                     <td>
                                     <a href="{{route('bpjsp.show', $item)}}" class="btn btn-info">View</a>
                                     <a href="{{route('bpjsp.edit', $item)}}" class="btn btn-warning">Edit</a>

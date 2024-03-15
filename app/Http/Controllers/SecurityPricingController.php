@@ -18,22 +18,6 @@ class SecurityPricingController extends Controller
         return view('security_pricing', ['regencies' => $regencies, 'sub' => $sub]);
     }
 
-    public function index2(Request $request)
-    {
-
-
-        $regencies = UMK::distinct('regency')->pluck('regency');
-        $sub = SubJob::distinct('subtitle')->pluck('subtitle');
-        $addBen = AdditionalBenefit::all();
-
-        return view('security_pricing2', [
-            'addBen' => $addBen,
-            'regencies' => $regencies,
-            'sub' => $sub,
-
-        ]);
-    }
-
     public function index3()
     {
         $regencies = UMK::distinct('regency')->pluck('regency');
@@ -46,11 +30,48 @@ class SecurityPricingController extends Controller
         ]);
     }
 
+    public function calculateBPJSValues(Request $request)
+    {
+        // Retrieve necessary data from session
+        $gajiPokok = Session::get('gaji_pokok');
+
+        // Retrieve additional benefit data
+        $addBen = AdditionalBenefit::all();
+
+        // Perform calculations
+        $thrNom = $addBen->where('benefit', 'THR')->first()->nominal_persentase;
+        $imbalanNom = $addBen->where('benefit', 'Imbalan Pasca Kerja')->first()->nominal_persentase;
+        $insentifNom = $addBen->where('benefit', 'Insentif Kerja di Hari Raya')->first()->nominal_persentase;
+
+        $thrValue = $gajiPokok / $thrNom;
+        $imbalanPascaKerjaValue = $gajiPokok / $imbalanNom;
+        $insentifKerjaDiHariRayaValue = $insentifNom * 5 / 12;
+        $extraValue = 0;
+        $subtotalb = $thrValue + $imbalanPascaKerjaValue + $insentifKerjaDiHariRayaValue + $extraValue;
+
+        $thrValue = $this->formatCurrency($thrValue);
+        $imbalanPascaKerjaValue = $this->formatCurrency($imbalanPascaKerjaValue);
+        $insentifKerjaDiHariRayaValue = $this->formatCurrency($insentifKerjaDiHariRayaValue);
+        $extraValue = $this->formatCurrency($extraValue);
+        $subtotalb = $this->formatCurrency($subtotalb);
+        Session::put('subtotalb', $subtotalb);
+
+        return [
+            'thrValue' => $thrValue,
+            'imbalanPascaKerjaValue' => $imbalanPascaKerjaValue,
+            'insentifKerjaDiHariRayaValue' => $insentifKerjaDiHariRayaValue,
+            'extraValue' => $extraValue,
+            'subtotalb' => $subtotalb,
+        ];
+    }
+
+
     public function index4()
     {
         $regencies = UMK::distinct('regency')->pluck('regency');
         $sub = SubJob::distinct('subtitle')->pluck('subtitle');
         $perlengkapanKerja = PerlengkapanKerja::all();
+
         $nominalKerja = PerlengkapanKerja::distinct('nomminal_persentase')->pluck('nominal_persentase');
         return view('security_pricing4', [
             'perlengkapanKerja' => $perlengkapanKerja,
@@ -66,11 +87,14 @@ class SecurityPricingController extends Controller
         $sub = SubJob::distinct('subtitle')->pluck('subtitle');
         $perlengkapanKerja = PerlengkapanKerja::all();
         $nominalKerja = PerlengkapanKerja::distinct('nomminal_persentase')->pluck('nominal_persentase');
+        $subtotalb = Session::get('subtotalb');
+
         return view('security_pricing5', [
             'perlengkapanKerja' => $perlengkapanKerja,
             'nominalKerja' => $nominalKerja,
             'regencies' => $regencies,
             'sub' => $sub,
+            'subtotalb' => $subtotalb,
         ]);
     }
 
@@ -86,6 +110,22 @@ class SecurityPricingController extends Controller
             'regencies' => $regencies,
             'sub' => $sub,
         ]);
+    }
+
+    public function formatCurrency($amount)
+    {
+        return 'Rp. ' . number_format($amount, 0, ',', '.');
+    }
+
+    public function storeSubtotale(Request $request)
+    {
+        // Retrieve subtotale from the request
+        $subtotale = $request->input('subtotale');
+
+        // Store subtotale value in the session
+        Session::put('subtotale', $subtotale);
+
+        return response()->json(['success' => true]);
     }
 
     public function saveGajiPokok(Request $request)

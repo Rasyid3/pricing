@@ -23,7 +23,7 @@
 
         <div class="form-group">
             <label for="wage">Wage:</label>
-            <input type="number" name="wage" id="wage" class="form-control" value="{{ $umk->wage }}" required>
+            <input type="text" name="wage" id="wage" class="form-control" value="{{ $umk->wage }}" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Update UMK</button>

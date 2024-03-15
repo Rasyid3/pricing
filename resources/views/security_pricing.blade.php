@@ -28,7 +28,7 @@
             box-sizing: border-box;
         }
 
-    input[type="button"], input[type="submit"] {
+        #takeHomePayBtn, #npBtn {
             width: 45%;
             margin-top: 15px;
             padding: 10px;
@@ -39,18 +39,18 @@
             transition: background-color 0.3s, transform 0.3s;
         }
 
-    input[type="submit"] {
+    #takeHomePayBtn {
             background-color: #0A4AAD;
             color: white;
         }
 
-    input[type="button"] {
+        #npBtn {
             background-color: #333;
             color: white;
             margin-left: 5%;
         }
 
-    input[type="submit"]:hover, input[type="button"]:hover {
+        #takeHomePayBtn:hover, #npBtn:hover {
         background-color: #0A4AAD;
         transform: scale(1.05);
     }
@@ -69,9 +69,11 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
+@if(auth()->check())
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
 <form action="" method="post">
     @csrf
 
@@ -127,8 +129,8 @@
     <h2>Gaji Pokok + Tunjangan Tetap</h2>
     <p id="total_gaji"> <span id="total_gaji">0</span></p>
 
-    <input type="button" onclick="window.location.href='/dashboard'" value="Back" style="visibility: hidden;">
-    <input type="submit" value="Next Page">
+    <input type="button" id="takeHomePayBtn" value="Take Home Pay" onclick="window.location.href='/security-pricing6'">
+    <input type="button" id="npBtn" value="Next Page" onclick="window.location.href='/security-pricing2'">
 
 </form>
 </div>
@@ -142,10 +144,10 @@
             return 'Rp. ' + formattedAmount;
         }
 
-    function redirectToNextPage() {
+    // function redirectToNextPage() {
 
-        $('form').submit();
-    }
+    //     $('form').submit();
+    // }
 
     function logout() {
     window.location.href = '/security-pricing3';
@@ -210,5 +212,8 @@
     updateGajiPokok();
 
     </script>
+     @else
+    <p>Please log in to access </p>
+    @endif
 </body>
 </html>

@@ -74,10 +74,10 @@
 </head>
 <body>
 
-<!-- @php
+@php
     // Retrieve gaji pokok from the session
     $gajiPokok = session('gaji_pokok');
-@endphp -->
+@endphp
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -85,13 +85,14 @@
 <h2 style="display:none;">Gaji Pokok in Security Pricing 2 : <span id="formattedGajiPokok">{{ $gajiPokok }}</span></h2>
 
     <form action="" method="post" id="myForm">
-        <!-- @csrf -->
+        @csrf
 
         <h2>E. Perlengkapan Kerja</h2>
 
         <div>
-            <label for="id_card">ID Card:</label>
-            <input type="text" name="id_card" id="id_card" readonly>
+        <label for="id_card">ID Card:</label>
+            <input type="text"  name="id_card" id="id_card" readonly>
+
         </div>
 
         <div>
@@ -104,6 +105,26 @@
             <input type="text" name="sepatu" id="sepatu" readonly>
         </div>
 
+        <h5>Opsional</h5>
+
+        <div>
+    <label for="CheckItem2">ATK:</label>
+    <input type="checkbox" id="CheckItem2" onclick="forChecked(2)">
+    <input type="text" style="display:none" name="atk" id="atk" readonly>
+</div>
+
+<div>
+    <label for="CheckItem3">Masker:</label>
+    <input type="checkbox" id="CheckItem3" onclick="forChecked(3)">
+    <input type="text" style="display:none" name="masker" id="masker" readonly>
+</div>
+
+<div>
+    <label for="CheckItem4">Face Shield:</label>
+    <input type="checkbox" id="CheckItem4" onclick="forChecked(4)">
+    <input type="text" style="display:none" name="faceshield" id="faceshield" readonly>
+</div>
+
         <h2>Subtotal E.</h2>
         <p id="display_gaji_pokok"><span id="display_gaji_pokok">0</span></p>
 
@@ -115,6 +136,64 @@
 </div>
 </div>
 <script>
+function forChecked(idcheck){
+    var checkBox= document.getElementById("CheckItem");
+    var checkBox2= document.getElementById("CheckItem2");
+    var checkBox3= document.getElementById("CheckItem3");
+    var checkBox4= document.getElementById("CheckItem4");
+    var text= document.getElementById("id_card");
+    var text2= document.getElementById("atk");
+    var text3= document.getElementById("masker");
+    var text4= document.getElementById("faceshield");
+
+    var seragamValue = parseFloat((perlengkapanData.find(item => item.perlengkapan === 'Seragam').nominal_persentase) * 2 / 12);
+    var sepatuValue = parseFloat((perlengkapanData.find(item => item.perlengkapan === 'Sepatu').nominal_persentase) / 12);
+    var maskerValue = parseFloat((perlengkapanData.find(item => item.perlengkapan === 'Masker').nominal_persentase) * 2 / 5);
+    var atkValue = parseFloat((perlengkapanData.find(item => item.perlengkapan === 'ATK').nominal_persentase) / 12);
+    var faceValue = parseFloat((perlengkapanData.find(item => item.perlengkapan === 'Face Shield').nominal_persentase) * 2 / 12);
+
+    if(idcheck === 2){
+        if(checkBox2.checked === true){
+            text2.style.display= "block";
+            subtotale += atkValue;
+        }
+        else{
+            text2.style.display="none";
+            subtotale -= atkValue;
+        }
+    }
+    else if(idcheck === 1){
+        if(checkBox.checked === true){
+            text.style.display= "block";
+            subtotale += idValue;
+        }
+        else{
+            text.style.display="none";
+            subtotale -= idValue;
+        }
+    }
+    else if(idcheck === 3){
+        if(checkBox3.checked === true){
+            text3.style.display= "block";
+            subtotale += maskerValue;
+        }
+        else{
+            text3.style.display="none";
+            subtotale -= maskerValue;
+        }
+    }
+    else if(idcheck === 4){
+        if(checkBox4.checked === true){
+            text4.style.display= "block";
+            subtotale += faceValue;
+        }
+        else{
+            text4.style.display="none";
+            subtotale -= faceValue;
+        }
+    }
+    document.getElementById('display_gaji_pokok').innerText = formatCurrency(subtotale);
+}
 
 function formatCurrency(amount) {
     var formattedAmount = parseFloat(amount).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -127,17 +206,26 @@ var perlengkapanData = {!! $perlengkapanKerja->toJson() !!};
 var idValue = parseFloat((perlengkapanData.find(item => item.perlengkapan === 'ID Card').nominal_persentase) / 12);
 var seragamValue = parseFloat((perlengkapanData.find(item => item.perlengkapan === 'Seragam').nominal_persentase) * 2 / 12);
 var sepatuValue = parseFloat((perlengkapanData.find(item => item.perlengkapan === 'Sepatu').nominal_persentase) / 12);
+var maskerValue = parseFloat((perlengkapanData.find(item => item.perlengkapan === 'Masker').nominal_persentase) * 2 / 5);
+var atkValue = parseFloat((perlengkapanData.find(item => item.perlengkapan === 'ATK').nominal_persentase) / 12);
+var faceValue = parseFloat((perlengkapanData.find(item => item.perlengkapan === 'Face Shield').nominal_persentase) * 2 / 12);
 
-var subtotale = idValue + seragamValue + sepatuValue;
+var subtotale =  idValue + seragamValue + sepatuValue;
+
 var formattedGajiPokok = formatCurrency(rawGajiPokok);
 
 document.getElementById('formattedGajiPokok').innerText = formattedGajiPokok;
 document.getElementById('id_card').value = formatCurrency(idValue);
 document.getElementById('seragam').value = formatCurrency(seragamValue);
 document.getElementById('sepatu').value = formatCurrency(sepatuValue);
+document.getElementById('masker').value = formatCurrency(maskerValue);
+document.getElementById('faceshield').value = formatCurrency(faceValue);
+document.getElementById('atk').value = formatCurrency(atkValue);
 document.getElementById('display_gaji_pokok').innerText = formatCurrency(subtotale);
 
 function redirectToNextPage() {
+    //var nextPageUrl = '/security-pricing5?subtotale=' + subtotale;//    var nextPageUrl = '/security-pricing5?subtotale=' + subtotale;
+    sessionStorage.setItem('subtotale', subtotale);
         window.location.href = '/security-pricing5';
 }
 
@@ -149,6 +237,8 @@ $('form').submit(function (e) {
 $('input[type="submit"]').on('click', function() {
     submitFormAndRedirect();
     });
+
+
 
 </script>
 

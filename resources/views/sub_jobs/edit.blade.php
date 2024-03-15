@@ -63,10 +63,10 @@
             <input type="number" name="tunjangan_shift" id="tunjangan_shift" class="form-control" value="{{ $subJob->tunjangan_shift }}" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Update SubJob</button>
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 
-    <a href="{{ route('sub_jobs.index') }}" class="btn btn-secondary">Back to SubJob List</a>
+    <a href="{{ route('sub_jobs.index') }}" class="btn btn-secondary">Back</a>
     </div>
     </div>
 </body>
